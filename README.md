@@ -1,41 +1,49 @@
-# SayHello
+# Python - Flask sample app
 
-*Say hello to the world.*
+## Prerequisites
+- Install python3, python3-venv, python3-pip
+    
+    ```
+    $ sudo apt-get install python3
+    
+    $ sudo apt-get install python3-venv
+    
+    $ sudo apt-get install python3-pip
+    ```
+    
+- Docker
 
-> Example application for *[Python Web Development with Flask](https://helloflask.com/en/book/1)* (《[Flask Web 开发实战](https://helloflask.com/book/1)》).
+## Deploy in local server
 
-Demo: http://sayhello.helloflask.com
+- Clone Repository
+- Create Virtual Env
+    ```bash
+    $ python3 -m venv env
 
-![Screenshot](https://helloflask.com/screenshots/sayhello.png)
+    $ source env/bin/activate
+    ```
+- Install Dependency
+    ```bash
+    $ pip install -r requirements.txt
+    ```
+- Add data dummy
+    ```bash
+    $ flask forge
+    ```
+- Run Application
+    ```bash
+    $ flask run
+    ```
+Access app in http://127.0.0.1:5000/
 
-## Installation
+## Deploy in Docker
+### Build Image 
 
-clone:
+```bash
+$ docker build -t farrasyakila/python-flask-app-sayhello .
 ```
-$ git clone https://github.com/greyli/sayhello.git
-$ cd sayhello
+### Run Container
+```bash
+$ docker run --name say-hello-app -d -p 5000:5000 farrasyakila/python-flask-app-sayhello
 ```
-create & activate virtual env then install dependency:
-
-with venv/virtualenv + pip:
-```
-$ python -m venv env  # use `virtualenv env` for Python2, use `python3 ...` for Python3 on Linux & macOS
-$ source env/bin/activate  # use `env\Scripts\activate` on Windows
-$ pip install -r requirements.txt
-```
-or with Pipenv:
-```
-$ pipenv install --dev
-$ pipenv shell
-```
-generate fake data then run:
-```
-$ flask forge
-$ flask run
-* Running on http://127.0.0.1:5000/
-```
-
-## License
-
-This project is licensed under the MIT License (see the
-[LICENSE](LICENSE) file for details).
+Access app in http://127.0.0.1:5000/
